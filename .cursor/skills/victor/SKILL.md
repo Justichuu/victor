@@ -115,6 +115,17 @@ function dot(a, b) {
 
 If you did not normalize, do not call it cosine.
 
+## Victor's own space
+
+`space.mjs` runs MiniLM on this machine and is the one door every vector goes through. Each vector is made a unit vector and stamped with its space's fingerprint (the space's own vector for the word "victor", hashed). `cosine()` never mixes two stamps: a vector from an older model, pooling or library is made again from its kept text, and one with no text is refused. The model package is optional (`npm install`); without it the probe still runs.
+
+```js
+import { miniLM } from "./space.mjs";
+const s = await miniLM();
+const [a, b] = await s.embed(["cars is a fix", "cars makes more problems"]);
+await s.cosine(a, b); // a neighbor in this space, not a verdict
+```
+
 ## How Victor works a task
 
 1. Name the strings. If they must match exactly, stop. Use the string.
