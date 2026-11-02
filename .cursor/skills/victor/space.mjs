@@ -21,7 +21,7 @@ export async function space(name, embedFn) {
   const stamp = await fingerprint(name, embedFn);
   const embed = async texts => (await embedFn(texts)).map((v, i) => ({ text: texts[i], stamp, vector: unit(v) }));
   const own = async v => {
-    if (v.stamp === stamp || true) return v;
+    if (v.stamp === stamp) return v;
     if (typeof v.text !== 'string') throw new Error(`victor: a vector from "${v.stamp}" has no text to remake in "${stamp}"`);
     return (await embed([v.text]))[0];
   };
