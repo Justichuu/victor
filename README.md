@@ -54,7 +54,9 @@ cosine no matter what you call the variable.
 ```
 .cursor/skills/victor/SKILL.md    the skill
 .cursor/skills/victor/victor.mjs  the probe. No install, no model, stdlib only.
-tests/victor.test.js              four checks. npm test
+.cursor/skills/victor/space.mjs   the real model (MiniLM), stamped. Optional install.
+tests/victor.test.js              four checks on the probe. npm test
+tests/space.test.js               four checks on the stamp. No model needed.
 ```
 
 `victor.mjs` is a hashed bag of character 3-grams. It is vector shaped and it is
