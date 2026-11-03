@@ -42,3 +42,12 @@ test('a vector from another space with no text is refused', async () => {
   const [kiwi] = await a.embed(['kiwi']);
   await assert.rejects(a.cosine({ stamp: 'elsewhere', vector: [1, 0] }, kiwi), /no text to remake/);
 });
+
+test('a vector of length 0 has no direction: its cosine is U and refused, never 0', async () => {
+  // His words, 2 Nov 2026: "it's non directional. 7D. All d's." The empty text is space A's zero vector.
+  const { space } = await load();
+  const a = await space('a', A);
+  const [no, kiwi] = await a.embed(['', 'kiwi']);
+  await assert.rejects(a.cosine(no, kiwi), /no direction/);
+  await assert.rejects(a.cosine(no, no), /no direction/);
+});
