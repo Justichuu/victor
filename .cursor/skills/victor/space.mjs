@@ -27,6 +27,8 @@ export async function space(name, embedFn) {
   };
   const cosine = async (a, b) => {
     [a, b] = await Promise.all([own(a), own(b)]);
+    // A vector of length 0 (empty text, a No) has no direction: its cosine is 0/0, U, never 0.
+    for (const v of [a, b]) if (v.vector.every(x => x === 0)) throw new Error(`victor: U, "${v.text}" has length 0 and no direction, so its cosine is 0/0; give it text with content`);
     return a.vector.reduce((s, x, i) => s + x * b.vector[i], 0);
   };
   return { stamp, embed, cosine };
