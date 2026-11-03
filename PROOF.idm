@@ -1,0 +1,15 @@
+note Victor proof: 2D Pythagorean (3, 4, 5) unit vector L2 norm and self-cosine similarity
+step x_sq is 3 power 2
+step y_sq is 4 power 2
+step norm_sq is x_sq plus y_sq
+step five_sq is 5 power 2
+step ux is 3 over 5
+step uy is 4 over 5
+step ux_sq is ux power 2
+step uy_sq is uy power 2
+step unit_dot is ux_sq plus uy_sq
+claim norm_sq same as 25
+claim norm_sq same as five_sq
+claim unit_dot same as 1
+ask unit_dot
+note [W] Victor proves a (3, 4) vector has squared norm 25 (5 squared) and normalized components 3 over 5 and 4 over 5 have self-dot product 1, with 3 claims settled true and 0 failed.
